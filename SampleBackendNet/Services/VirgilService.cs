@@ -7,7 +7,7 @@ using Virgil.SDK.Web.Authorization;
 
 namespace SampleBackendNet.Services
 {
-    // Virgil server authentication service
+    // Service to authenticate at Virgil server
     public interface IVirgilService
     {
         VirgilResponse GenerateVirgilJwt(string identity);

@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace SampleBackendNet.Services
 {
-    // Authentication on your backend (in this sample, it's also JWT auth)
+    // Authentication on your backend (in this sample, it's also JWT auth, but you can use any other auth scheme)
     public interface IAuthService
     {
         AuthResponse Authenticate(AuthRequest model, HttpContext httpContext);
@@ -61,7 +61,7 @@ namespace SampleBackendNet.Services
                 issuer: _configuration["Jwt:Issuer"],
                 audience: _configuration["Jwt:Audience"],
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(30),
+                expires: DateTime.Now.AddMinutes(60),
                 signingCredentials: credentials
                 );
 

@@ -32,11 +32,14 @@ namespace SampleBackendNet
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // setup Virgil JWT generator
             services.AddTransient(s => SetupJwtGenerator());
 
-            services.AddScoped<IAuthService, AuthService>();
-            services.AddScoped<IVirgilService, VirgilService>();
+            services.AddTransient<IAuthService, AuthService>();
+            services.AddTransient<IVirgilService, VirgilService>();
 
+            // Using JWT authentication to auth at own backend
+            // Can be changed to any other authentication scheme
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>
                     {
@@ -78,6 +81,7 @@ namespace SampleBackendNet
             });
         }
 
+        // method for JWT generator setup
         private JwtGenerator SetupJwtGenerator()
         {
             // App Key (you got this Key at Virgil Dashboard)
